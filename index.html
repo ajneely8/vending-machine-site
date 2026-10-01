@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treasure Drop | Pokémon Card Vending Machines for Your Location</title>
+<meta name="description" content="Treasure Drop places premium Pokémon card vending machines inside high-traffic businesses and venues. Scroll through the machine, the products, and how placement works.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Chakra+Petch:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+</script>
+</head>
+<body class="onepage">
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="#top" aria-label="Treasure Drop home"><img src="assets/img/logo.webp" alt="Treasure Drop" width="1536" height="1024"></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#machines">Machines</a></li>
+      <li><a href="#why">Why Treasure Drop</a></li>
+      <li><a href="#places">Locations</a></li>
+    </ul>
+    <a class="btn btn-gold btn-sm" href="#request">Request a Machine</a>
+    <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+</header>
+
+<!-- The one 3D stage. It stays put while the page scrolls; each chapter moves the camera. -->
+<div class="stage stage3d" id="stage">
+  <div class="backdrop" id="backdrop"></div>
+  <canvas tabindex="0" aria-label="Interactive 3D Treasure Drop vending machine. Drag or use the arrow keys to turn it."></canvas>
+  <p class="stage-load">Loading machine…</p>
+  <div class="stage-tools" id="stage-tools">
+    <span class="hint">Drag to turn</span>
+    <div class="seg" role="group" aria-label="Lighting">
+      <button data-light="showroom" aria-pressed="true">Showroom</button>
+      <button data-light="arcade" aria-pressed="false">Arcade</button>
+      <button data-light="daylight" aria-pressed="false">Daylight</button>
+    </div>
+  </div>
+</div>
+
+<main class="chapters" id="top">
+
+  <section class="chapter" data-ch="hero">
+    <div class="wrap"><div class="panel">
+      <p class="tag">Pokémon card vending machines</p>
+      <h1>Pokémon Cards. <em>On Demand.</em></h1>
+      <p class="lede">Treasure Drop places premium Pokémon card vending machines inside high-traffic businesses and venues. We install it, stock it, and manage it. Your customers just walk up and buy.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="#request">Request a Machine</a>
+        <a class="btn btn-line" href="#products">Look inside</a>
+      </div>
+      <p class="scroll-cue" aria-hidden="true">Scroll to zoom in</p>
+    </div></div>
+  </section>
+
+  <!-- six shelf chapters are generated here: the camera moves in on each shelf -->
+  <div id="products" class="group"></div>
+
+  <!-- three machine chapters are generated here -->
+  <div id="machines" class="group"></div>
+
+  <section class="chapter" data-ch="compare">
+    <div class="wrap"><div class="panel">
+      <p class="tag">Side by side</p>
+      <h2>Three machines. <em>One for your floor.</em></h2>
+      <div class="compare" id="compare"></div>
+      <span class="prelim">Preliminary specs · approximate</span>
+    </div></div>
+  </section>
+
+  <section class="chapter" data-ch="capacity" id="capacity">
+    <div class="wrap"><div class="panel">
+      <p class="tag">Capacity visualizer</p>
+      <h2>See how much <em>actually fits.</em></h2>
+      <p class="lede">Pick a machine and set what goes on each shelf. It refills as you change it.</p>
+      <div class="cap-panel">
+        <div class="seg" role="group" aria-label="Machine" id="cap-machines"></div>
+        <div class="cap-total"><output id="cap-total">0</output><span>products<br>in this layout</span></div>
+        <div class="shelf-rows" id="cap-shelves"></div>
+        <div class="presets" id="cap-presets" role="group" aria-label="Preset layouts"></div>
+        <div class="cap-meta">
+          <span><b id="cap-sel">0</b> selections</span>
+          <span><b id="cap-rows">0</b> shelves</span>
+          <button class="linkbtn" id="cap-refill">Refill</button>
+        </div>
+        <p class="fineprint">Counts are approximate. Exact capacity varies with product dimensions and machine configuration.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="chapter" data-ch="why1" id="why">
+    <div class="wrap"><div class="panel">
+      <p class="tag">For placement partners</p>
+      <h2>Turn Unused Floor Space Into Something <em>Customers Love.</em></h2>
+      <p class="lede">A professionally operated Pokémon card vending experience. Your staff never touches the inventory.</p>
+      <ul class="blist">
+        <li><h3>One more thing to do at your location</h3><p>Pokémon fans and families get another reason to walk in, stay a little longer, and interact with your space.</p></li>
+        <li><h3>Small footprint</h3><p>A machine takes up only a few square feet of floor. A corner, a hallway, or the wall by the door is usually enough.</p></li>
+        <li><h3>Professionally stocked</h3><p>Treasure Drop handles product selection, stocking, machine maintenance, and presentation.</p></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <section class="chapter" data-ch="why2">
+    <div class="wrap"><div class="panel">
+      <p class="tag">Built like retail</p>
+      <h2>Tap, pay, <em>done.</em></h2>
+      <ul class="blist">
+        <li><h3>Cashless payments</h3><p>Customers pay the way they already pay everywhere else. No cash for anyone to count or handle.</p>
+          <ul class="pay" aria-label="Supported payment methods, where applicable"><li>Credit / debit</li><li>Tap to pay</li><li>Apple Pay</li><li>Google Pay</li></ul></li>
+        <li><h3>Regularly restocked</h3><p>Popular Pokémon releases get rotated in based on availability and what your customers are buying.</p></li>
+        <li><h3>Clean and professional</h3><p>Full-wrap graphics, LED-lit shelves, and a touchscreen. It reads as a premium retail display, not an old snack machine.</p></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <section class="chapter" data-ch="process">
+    <div class="wrap"><div class="panel">
+      <p class="tag">Low involvement for you</p>
+      <h2>You approve the spot. <em>We do the rest.</em></h2>
+      <ol class="vsteps">
+        <li><span class="who">Together</span><h3>Choose a machine</h3><p>We help you work out which machine fits the space you have.</p></li>
+        <li><span class="who">You</span><h3>Approve the location</h3><p>We settle on the best placement inside your business.</p></li>
+        <li><span class="who">Treasure Drop</span><h3>We install it</h3><p>The machine is delivered and professionally set up.</p></li>
+        <li><span class="who">Treasure Drop</span><h3>We manage it</h3><p>Stocking, product rotation, and machine management are on us.</p></li>
+        <li><span class="who">Your customers</span><h3>Customers shop</h3><p>They buy Pokémon products straight from the machine.</p></li>
+      </ol>
+    </div></div>
+  </section>
+
+  <section class="chapter" data-ch="places" id="places">
+    <div class="wrap"><div class="panel">
+      <p class="tag">Ideal locations</p>
+      <h2>Your Space. <em>Our Machine.</em></h2>
+      <p class="lede" id="place-note" aria-live="polite"></p>
+      <div class="place-list" id="place-list" role="group" aria-label="Location type"></div>
+      <p class="fineprint">Shown: <b id="place-machine"></b>. Illustrative mockups. The settings and people are computer-generated, not photos of actual installations or real customers.</p>
+    </div></div>
+  </section>
+
+  <section class="chapter" data-ch="request" id="request">
+    <div class="wrap"><div class="panel">
+      <p class="tag">Placement inquiry</p>
+      <h2>Bring Treasure Drop to <em>Your Location</em></h2>
+      <p class="lede">Interested in adding a Pokémon card vending machine to your business? Tell us about your location and we’ll help determine which Treasure Drop machine is the best fit.</p>
+      <div class="form" id="request-form">
+        <form id="inquiry" novalidate>
+          <input type="hidden" name="subject" value="New Treasure Drop machine request">
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="form-grid">
+            <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="f-biz">Business name</label><input id="f-biz" name="business_name" autocomplete="organization" required></div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="f-phone">Phone number</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="field full"><label for="f-addr">Business address</label><input id="f-addr" name="business_address" autocomplete="street-address" required></div>
+            <div class="field"><label for="f-type">Business type</label>
+              <select id="f-type" name="business_type" required>
+                <option value="" selected disabled>Select one</option>
+                <option>Retail Store</option><option>Shopping Center / Mall</option><option>Arcade</option><option>Restaurant</option><option>Entertainment Venue</option><option>Card / Game Store</option><option>Sports Facility</option><option>Other</option>
+              </select></div>
+            <div class="field"><label for="f-traffic">Estimated daily foot traffic</label>
+              <select id="f-traffic" name="daily_foot_traffic" required>
+                <option value="" selected disabled>Select one</option>
+                <option>Under 100</option><option>100–250</option><option>250–500</option><option>500–1,000</option><option>1,000+</option>
+              </select></div>
+            <div class="field full"><label for="f-space">Available floor space</label><input id="f-space" name="floor_space" placeholder="For example: 4 ft × 3 ft by the front entrance"></div>
+            <fieldset class="field full">
+              <legend>Which machine are you interested in?</legend>
+              <div class="choices">
+                <label><input type="radio" name="machine" value="Compact">Compact</label>
+                <label><input type="radio" name="machine" value="Standard">Standard</label>
+                <label><input type="radio" name="machine" value="XL / Premium">XL / Premium</label>
+                <label><input type="radio" name="machine" value="Not Sure" checked>Not sure</label>
+              </div>
+            </fieldset>
+            <div class="field full"><label for="f-about">Tell us about your location</label><textarea id="f-about" name="about_location" placeholder="Who comes through, busiest hours, where the machine could go"></textarea></div>
+          </div>
+          <button class="btn btn-gold btn-xl" type="submit">Request a Treasure Drop Machine</button>
+          <p class="form-err" id="form-err" role="alert" hidden></p>
+          <p class="form-note">We only use your details to follow up about machine placement.</p>
+        </form>
+        <div class="thanks" id="thanks" hidden tabindex="-1">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="20"/><path d="M15 24l6 6 12-13"/></svg>
+          <h2>Request sent</h2>
+          <p>Thanks for your interest in Treasure Drop. Our team will review your location and contact you about potential machine placement.</p>
+        </div>
+      </div>
+    </div></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <img src="assets/img/logo.webp" alt="Treasure Drop" width="1536" height="1024" loading="lazy">
+    <div>
+      <ul>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#machines">Machines</a></li>
+        <li><a href="#why">Why Treasure Drop</a></li>
+        <li><a href="#places">Locations</a></li>
+        <li><a href="#request">Request a Machine</a></li>
+      </ul>
+      <p><b>Example pricing.</b> Prices marked MSRP are the published US MSRP at release. Other prices and all unit costs are example figures; actual pricing, cost, and margin vary by release, supplier, and location. Machine specifications are preliminary and capacity varies with product dimensions and configuration.</p>
+      <p>Treasure Drop is an independent vending operator and is not affiliated with, sponsored by, or endorsed by Nintendo, The Pokémon Company, Creatures Inc., or GAME FREAK. Pokémon and all related names are trademarks of their respective owners.</p>
+      <p>© <span data-year></span> Treasure Drop</p>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta"><a class="btn btn-gold" href="#request">Request a Machine</a></div>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/request.js" defer></script>
+<script type="module" src="assets/js/one.js"></script>
+</body>
+</html>
